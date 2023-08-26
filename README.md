@@ -43,7 +43,7 @@ parent := context.Background()
 ctx, cancel := context.WithTimeout(parent, 5 * time.Second)
 ```
 
-logic yang digunakan dengan cancel biasa sama, hanya saja kita dapat mengaktifkan cancel dengan ototmatis setelah waktu yang telah di tentikan maka dari itu kita tinggal memasang defer `cancel()` di code yang kita buat agar jika sudah melebihi waktu yang di tentukan proses yang sedang berjalan dapat di hentikan secara otomatis. sangat berguna pada query ke DB
+logic yang digunakan dengan cancel biasa sama, hanya saja kita dapat mengaktifkan cancel dengan ototmatis setelah waktu yang telah di tentikan maka dari itu kita tinggal memasang `defer cancel()` di code yang kita buat agar jika sudah melebihi waktu yang di tentukan proses yang sedang berjalan dapat di hentikan secara otomatis. sangat berguna pada query ke DB
 
 > context Deadline
 
@@ -52,4 +52,4 @@ parent := context.Background()
 ctx, cancel := context.WithDeadline(parent, time.Now().Add(5 * time.Second))
 ```
 
-hampir sama dengan timeout bedanya hanya waktu setnya, jika timeout waktu yang di set tapi jika deadline waktu yang di set, contoh jam 12 siang atau jam 1 siang, jadi patokannya adalah jam bukan waktu yang di set seperti 5 dtk atau sebagainya dan pemanggilan `cancel()` sama seperti timeout
+hampir sama dengan timeout bedanya hanya waktu setnya, jika timeout waktu yang di set tapi jika deadline waktu yang di set, contoh jam 12 siang atau jam 1 siang, jadi patokannya adalah jam bukan waktu yang di set seperti 5 dtk atau sebagainya dan pemanggilan `defer cancel()` sama seperti timeout
